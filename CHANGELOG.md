@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.1 (2026-10-27)
+
+- Fix: opencode was detected by the name "opencode" alone, so commits from opencode's release bot
+  (`opencode <opencode@sst.dev>`) were counted as AI-written. Now only the agent's own address,
+  `noreply@opencode.ai`, counts. Regression test added.
+
 ## v0.1.0 (2026-10-27)
 
 First release.

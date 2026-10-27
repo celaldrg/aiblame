@@ -97,7 +97,7 @@ Writes a Markdown report to the job summary, and optionally a badge and card you
 - uses: actions/checkout@v7
   with:
     fetch-depth: 0          # aiblame needs full history
-- uses: celaldrg/aiblame@v0.1.0
+- uses: celaldrg/aiblame@v0.1.1
   with:
     badge: ai-badge.svg
     card: ai-card.svg

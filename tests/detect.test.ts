@@ -31,6 +31,7 @@ describe("matchAgent", () => {
     "Michael Truell <michael@cursor.com>",
     "Amparo Ruiz <amparo@example.com>",
     "dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
+    "opencode <opencode@sst.dev>",
   ])("does not flag humans or plain bots: %s", (id) => expect(matchAgent(id)).toBeUndefined());
 });
 
@@ -53,6 +54,13 @@ describe("classify", () => {
     const c = classify({ ...base, message: "feat\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)" });
     expect(c.agents).toEqual(["claude"]);
     expect(c.signals).toEqual(["message"]);
+  });
+
+  it("opencode's release bot is not the opencode agent", () => {
+    const bot = { authorName: "opencode", authorEmail: "opencode@sst.dev", committerName: "opencode", committerEmail: "opencode@sst.dev", message: "release: v1.0.0" };
+    expect(classify(bot).agents).toEqual([]);
+    const agent = classify({ ...base, message: "feat\n\nCo-Authored-By: opencode <noreply@opencode.ai>" });
+    expect(agent.agents).toEqual(["opencode"]);
   });
 
   it("bot author → ai without pilot", () => {

@@ -1,6 +1,6 @@
 {
   "name": "aiblame",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "How much of this repo did AI write? git blame for the agent era: Claude Code, Cursor, Copilot, Codex, Aider, Devin and more. Zero dependencies.",
   "type": "module",
   "bin": {

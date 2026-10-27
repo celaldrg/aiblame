@@ -77,7 +77,8 @@ export const AGENTS: AgentDef[] = [
     id: "opencode",
     name: "opencode",
     color: "#eab308",
-    identity: [/noreply@opencode\.ai/i, /^opencode(\[bot\])?\s*</i],
+    // Only the agent's own address. "opencode <opencode@sst.dev>" is opencode's release bot, not the agent.
+    identity: [/noreply@opencode\.ai/i],
   },
   {
     id: "factory",
