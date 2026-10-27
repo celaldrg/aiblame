@@ -1,0 +1,52 @@
+{
+  "name": "aiblame",
+  "version": "0.1.0",
+  "description": "How much of this repo did AI write? git blame for the agent era: Claude Code, Cursor, Copilot, Codex, Aider, Devin and more. Zero dependencies.",
+  "type": "module",
+  "bin": {
+    "aiblame": "dist/cli.js"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p . && node -e \"require('fs').chmodSync('dist/cli.js',0o755)\"",
+    "test": "vitest run",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run build && npm test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "git",
+    "blame",
+    "ai",
+    "claude-code",
+    "cursor",
+    "copilot",
+    "codex",
+    "aider",
+    "ai-agents",
+    "vibe-coding",
+    "cli",
+    "badge"
+  ],
+  "author": "Celalettin Durğaç (https://github.com/celaldrg)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/celaldrg/aiblame.git"
+  },
+  "homepage": "https://github.com/celaldrg/aiblame#readme",
+  "bugs": {
+    "url": "https://github.com/celaldrg/aiblame/issues"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.12"
+  }
+}

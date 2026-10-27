@@ -1,0 +1,44 @@
+name: aiblame
+description: How much of this repo did AI write? Badge, report card and job summary from your git history.
+author: Celalettin Durğaç
+branding:
+  icon: git-commit
+  color: orange
+inputs:
+  args:
+    description: Extra CLI arguments, e.g. "--fast" or "--since '6 months ago'"
+    required: false
+    default: ""
+  badge:
+    description: Write a shields-style SVG badge to this path
+    required: false
+    default: ""
+  card:
+    description: Write an SVG report card to this path
+    required: false
+    default: ""
+  fail-above:
+    description: Fail the job if the AI-written percentage is above this number
+    required: false
+    default: ""
+runs:
+  using: composite
+  steps:
+    - name: Build aiblame
+      shell: bash
+      run: cd "$GITHUB_ACTION_PATH" && npm ci --no-audit --no-fund --silent && npm run build --silent
+    - name: Run aiblame
+      shell: bash
+      env:
+        INPUT_ARGS: ${{ inputs.args }}
+        INPUT_BADGE: ${{ inputs.badge }}
+        INPUT_CARD: ${{ inputs.card }}
+        INPUT_FAIL: ${{ inputs.fail-above }}
+      run: |
+        set -euo pipefail
+        CLI="node $GITHUB_ACTION_PATH/dist/cli.js"
+        EXTRA=()
+        [ -n "$INPUT_BADGE" ] && EXTRA+=(--badge "$INPUT_BADGE")
+        [ -n "$INPUT_CARD" ] && EXTRA+=(--card "$INPUT_CARD")
+        [ -n "$INPUT_FAIL" ] && EXTRA+=(--fail-above "$INPUT_FAIL")
+        eval "$CLI $INPUT_ARGS --markdown \"\${EXTRA[@]}\"" >> "$GITHUB_STEP_SUMMARY"
