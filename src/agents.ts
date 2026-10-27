@@ -109,6 +109,18 @@ export const AGENTS: AgentDef[] = [
     color: "#e5e7eb",
     identity: [/^v0\[bot\]/i],
   },
+  {
+    id: "cline",
+    name: "Cline",
+    color: "#84cc16",
+    identity: [/cline-agent@users\.noreply\.github\.com/i, /^cline agent\s*</i],
+  },
+  {
+    id: "roo",
+    name: "Roo Code",
+    color: "#d946ef",
+    identity: [/roomote@roocode\.com/i, /^roomote(\[bot\])?\s*</i, /^roo code\s*</i],
+  },
 ];
 
 /** Plain automation: real bots, but not AI authorship. Reported separately, never counted as AI. */
