@@ -20,6 +20,9 @@ describe("matchAgent", () => {
     ["Amp <amp@ampcode.com>", "amp"],
     ["opencode <noreply@opencode.ai>", "opencode"],
     ["factory-droid[bot] <138933559+factory-droid[bot]@users.noreply.github.com>", "factory"],
+    ["Cline Agent <cline-agent@users.noreply.github.com>", "cline"],
+    ["Roo Code <roomote@roocode.com>", "roo"],
+    ["roomote[bot] <219738659+roomote[bot]@users.noreply.github.com>", "roo"],
     ["lovable-dev[bot] <lovable@example.com>", "lovable"],
   ])("%s → %s", (id, agent) => expect(matchAgent(id)).toBe(agent));
 
@@ -30,6 +33,9 @@ describe("matchAgent", () => {
     "Sam Altman <sam@openai.com>",
     "Michael Truell <michael@cursor.com>",
     "Amparo Ruiz <amparo@example.com>",
+    "Cline Dion <cline@example.com>",
+    "Max Paulus <max@cline.bot>",
+    "Roo <roo@example.com>",
     "dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
   ])("does not flag humans or plain bots: %s", (id) => expect(matchAgent(id)).toBeUndefined());
 });
@@ -47,6 +53,16 @@ describe("classify", () => {
   it("co-author trailer → ai, author becomes the pilot", () => {
     const c = classify({ ...base, message: "feat\n\nCo-Authored-By: Claude <noreply@anthropic.com>" });
     expect(c).toMatchObject({ kind: "ai", agents: ["claude"], signals: ["co-author"], pilot: "Ada" });
+  });
+
+  it("Cline co-author trailer → ai with cline agent", () => {
+    const c = classify({ ...base, message: "fix\n\nCo-authored-by: Cline Agent <cline-agent@users.noreply.github.com>" });
+    expect(c).toMatchObject({ kind: "ai", agents: ["cline"], signals: ["co-author"], pilot: "Ada" });
+  });
+
+  it("Roo Code co-author trailer → ai with roo agent", () => {
+    const c = classify({ ...base, message: "fix\n\nCo-authored-by: Roo Code <roomote@roocode.com>" });
+    expect(c).toMatchObject({ kind: "ai", agents: ["roo"], signals: ["co-author"], pilot: "Ada" });
   });
 
   it("Generated with Claude Code footer", () => {
