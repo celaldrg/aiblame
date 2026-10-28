@@ -20,6 +20,7 @@ describe("matchAgent", () => {
     ["Amp <amp@ampcode.com>", "amp"],
     ["opencode <noreply@opencode.ai>", "opencode"],
     ["factory-droid[bot] <138933559+factory-droid[bot]@users.noreply.github.com>", "factory"],
+    ["Qwen-Coder <qwen-coder@alibabacloud.com>", "qwen"],
     ["lovable-dev[bot] <lovable@example.com>", "lovable"],
   ])("%s → %s", (id, agent) => expect(matchAgent(id)).toBe(agent));
 
@@ -30,6 +31,7 @@ describe("matchAgent", () => {
     "Sam Altman <sam@openai.com>",
     "Michael Truell <michael@cursor.com>",
     "Amparo Ruiz <amparo@example.com>",
+    "Qwen Zhang <qwen@example.com>",
     "dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>",
     "opencode <opencode@sst.dev>",
   ])("does not flag humans or plain bots: %s", (id) => expect(matchAgent(id)).toBeUndefined());
@@ -48,6 +50,11 @@ describe("classify", () => {
   it("co-author trailer → ai, author becomes the pilot", () => {
     const c = classify({ ...base, message: "feat\n\nCo-Authored-By: Claude <noreply@anthropic.com>" });
     expect(c).toMatchObject({ kind: "ai", agents: ["claude"], signals: ["co-author"], pilot: "Ada" });
+  });
+
+  it("Qwen Code co-author trailer → ai with qwen agent", () => {
+    const c = classify({ ...base, message: "fix\n\nCo-authored-by: Qwen-Coder <qwen-coder@alibabacloud.com>" });
+    expect(c).toMatchObject({ kind: "ai", agents: ["qwen"], signals: ["co-author"], pilot: "Ada" });
   });
 
   it("Generated with Claude Code footer", () => {
