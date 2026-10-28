@@ -127,7 +127,7 @@ console.log(report.headline); // { percent: 42.1, basis: "surviving-lines" }
 
 A commit signed by several agents is credited to the first signature (author, then the first trailer), so the per-agent shares add up to the headline.
 
-**Supported agents (v0.1.0):** Claude Code · Cursor · GitHub Copilot · OpenAI Codex · Aider · Devin · Google Jules · Gemini · Amp · opencode · Factory Droid · Windsurf · JetBrains Junie · Lovable · v0.
+**Supported agents (v0.1.0):** Claude Code · Cursor · GitHub Copilot · OpenAI Codex · Aider · Devin · Google Jules · Gemini · Amp · opencode · Factory Droid · Windsurf · JetBrains Junie · Lovable · v0 · Qwen Code.
 Patterns are strict on purpose: they never match humans called Claude, Devin or Jules (there are tests for that).
 
 ### Limits, honestly

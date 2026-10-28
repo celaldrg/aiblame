@@ -110,6 +110,12 @@ export const AGENTS: AgentDef[] = [
     color: "#e5e7eb",
     identity: [/^v0\[bot\]/i],
   },
+  {
+    id: "qwen",
+    name: "Qwen Code",
+    color: "#7c3aed",
+    identity: [/qwen-coder@alibabacloud\.com/i, /^qwen-coder(\[bot\])?\s*</i],
+  },
 ];
 
 /** Plain automation: real bots, but not AI authorship. Reported separately, never counted as AI. */
