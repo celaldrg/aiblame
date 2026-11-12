@@ -29,6 +29,12 @@ npx -y github:celaldrg/aiblame vercel/next.js
 
 No install, no API key, no network calls except `git clone` for remote repos. Needs Node 20+ and git.
 
+To keep it on your PATH, install the prebuilt release tarball:
+
+```sh
+npm install -g https://github.com/celaldrg/aiblame/releases/download/v0.1.1/aiblame-0.1.1.tgz
+```
+
 ## What you get
 
 - **The real number.** Not "how many commits mention Claude", but how many **lines at HEAD** were last touched by an AI-assisted commit (`git blame` over every file, in parallel).
