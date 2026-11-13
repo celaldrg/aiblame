@@ -1,6 +1,6 @@
 <div align="center">
 
-# aiblame
+<img src="assets/banner.webp" alt="aiblame" width="100%">
 
 **How much of this repo did AI write?**
 
@@ -35,6 +35,11 @@ To keep it on your PATH, install the prebuilt release tarball:
 npm install -g https://github.com/celaldrg/aiblame/releases/download/v0.1.1/aiblame-0.1.1.tgz
 ```
 
+<p align="center">
+  <img src="assets/demo.gif" alt="aiblame running in a terminal" width="860">
+  <br><sub>Recorded with <a href="https://github.com/charmbracelet/vhs">vhs</a>.</sub>
+</p>
+
 ## What you get
 
 - **The real number.** Not "how many commits mention Claude", but how many **lines at HEAD** were last touched by an AI-assisted commit (`git blame` over every file, in parallel).
@@ -46,6 +51,11 @@ npm install -g https://github.com/celaldrg/aiblame/releases/download/v0.1.1/aibl
 - **Honest by design**: it only counts agents that *sign their work*. No "AI detector" guesswork from code style.
 
 <img src="docs/card.svg" alt="aiblame report card for obra/superpowers" width="520">
+
+<p align="center">
+  <img src="assets/terminal-demo.webp" alt="aiblame, real terminal output" width="860">
+  <br><sub>Real output: <code>aiblame obra/superpowers</code>, run on 2026-11-13.</sub>
+</p>
 
 ## We ran it on trending repos
 
